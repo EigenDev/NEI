@@ -1236,7 +1236,6 @@ class Visualize(NEI):
 
         width=1.0
 
-        fig, ax = plt.subplots()
         if isinstance(time_index, (list, np.ndarray)):
 
 
@@ -1251,27 +1250,35 @@ class Visualize(NEI):
                 #Toggle between zero and one for colors array
                 color_idx ^= 1
 
-                ax.bar(charge_states, self.results.ionic_fractions[self.element][idx,:], alpha=alpha, \
+                plt.bar(charge_states, self.results.ionic_fractions[self.element][idx,:], alpha=alpha, \
                         width=width, color=colors[color_idx], 
                         label='Time:{time:.{number}f}'.format(time=self.index_to_time(idx), number=1))
                 alpha -= 0.2
-            ax.set_xticks(charge_states-width/2.0)
-            ax.set_xticklabels(charge_states)
-            ax.set_title(f'{self.element}')
 
-            ax.set_xlabel('Charge State')
-            ax.set_ylabel('Ionic Fraction') 
+            #set location and desired labels for xtick modification
+            locs = charge_states - width/2.0
+            labels = charge_states
+            
+            plt.xticks(locs,labels)
+            plt.title(f'{self.element}')
+
+            plt.xlabel('Charge State')
+            plt.ylabel('Ionic Fraction') 
     
-            ax.legend(loc='best')
+            plt.legend(loc='best')
             #plt.show()
 
         else:
-            ax.bar(x, self.results.ionic_fractions[self.element][time_index,:], alpha=1.0, width=width)
-            ax.set_xticks(charge_states-width/2.0)
-            ax.set_xticklabels(charge_states)
-            ax.set_title(f'{self.element}')
-            ax.set_xlabel('Charge State')
-            ax.set_ylabel('Ionic Fraction') 
+            plt.bar(x, self.results.ionic_fractions[self.element][time_index,:], alpha=1.0, width=width)
+
+            #set location and desired labels fr xtick modification
+            locs = charge_states-width/2.0
+            labels = charge_states
+
+            plt.xticks(locs, labels)
+            plt.title(f'{self.element}')
+            plt.xlabel('Charge State')
+            plt.ylabel('Ionic Fraction') 
             #plt.show()
 
     
