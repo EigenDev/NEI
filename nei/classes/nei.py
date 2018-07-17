@@ -1457,21 +1457,6 @@ class Visualize(NEI):
                         label='Time:{time:.{number}f}'.format(time=self.index_to_time(idx), number=1))
                 alpha -= 0.2
 
-<<<<<<< HEAD
-            ax.set_xlabel('Charge State')
-            ax.set_ylabel('Ionic Fraction')
-
-            ax.legend(loc='best')
-            #plt.show()
-
-        else:
-            ax.bar(x, self.results.ionic_fractions[self.element][time_index,:], alpha=1.0, width=width)
-            ax.set_xticks(charge_states-width/2.0)
-            ax.set_xticklabels(charge_states)
-            ax.set_title(f'{self.element}')
-            ax.set_xlabel('Charge State')
-            ax.set_ylabel('Ionic Fraction')
-=======
             #set location and desired labels for xtick modification
             locs = charge_states - width/2.0
             labels = charge_states
@@ -1496,7 +1481,6 @@ class Visualize(NEI):
             plt.title(f'{self.element}')
             plt.xlabel('Charge State')
             plt.ylabel('Ionic Fraction') 
->>>>>>> plots
             #plt.show()
 
     def rh_density_plot(self, gamma, mach, ion='None'):
