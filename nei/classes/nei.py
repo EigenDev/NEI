@@ -83,7 +83,6 @@ class Simulation:
         self._n_e = np.full(max_steps + 1, np.nan) * u.cm ** -3
         self._T_e = np.full(max_steps + 1, np.nan) * u.K
         self._time = np.full(max_steps + 1, np.nan) * u.s
-
         self._index = 0
 
         self._assign(
@@ -703,7 +702,7 @@ class NEI:
             self._adapt_dt = choice
         else:
             raise TypeError("Invalid value for adapt_dt")
-
+    
     @property
     def dt_input(self) -> Optional[u.Quantity]:
         """Return the inputted time step."""
@@ -1265,7 +1264,6 @@ class NEI:
         except Exception as exc:
             raise NEIError(f"Unable to do time advance for {elem}") from exc
         else:
-
             new_time = self.results.time[self.results._index-1] + self._dt
             self.results._assign(
                 new_time=new_time,
